@@ -7,7 +7,7 @@ Are you tired creating `routes`,`controllers`? Handling requests, determining if
 Check your controller, isn't messy? Try out below code, it might help you to organize things.
 
 #### Laravel: 
-(https://github.com/daison12006013/blaze-code/wiki/Laravel-Example)[https://github.com/daison12006013/blaze-code/wiki/Laravel-Example]
+[https://github.com/daison12006013/blaze-code/wiki/Laravel-Example](https://github.com/daison12006013/blaze-code/wiki/Laravel-Example)
 
 #### Raw PHP: 
-(https://github.com/daison12006013/blaze-code/wiki/Raw-PHP)[https://github.com/daison12006013/blaze-code/wiki/Raw-PHP]
+[https://github.com/daison12006013/blaze-code/wiki/Raw-PHP](https://github.com/daison12006013/blaze-code/wiki/Raw-PHP)
