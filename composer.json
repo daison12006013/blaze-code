@@ -1,0 +1,19 @@
+{
+    "name": "daison/blaze-code",
+    "description": "Blazing fast way to handle your MVC Frameworks!",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daison Cariño",
+            "email": "daison12006013@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "BlazeCode\\": "src/"
+        },
+        "files": [
+            "src/Helpers.php"
+        ]
+    }
+}
