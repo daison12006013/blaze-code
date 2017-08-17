@@ -1,28 +1,13 @@
-# Route
+# Blaze Code
 
-```php
-$routes = [
-    [
-        'prefix' => ['v1', 'v1.0'],
-        'with_suffix' => true,
-        'middleware' => ['auth:api'],
-        'namespace' => 'App\\Http\\Controllers\\V1',
-        'routes' => [
-            'posts',
-        ],
-    ],
-];
-```
+This is not a framework, it's just a helper tool for you to minimize your daily work.
 
-For more info above config, you can check the wiki.
+Are you tired creating `routes`,`controllers`? Handling requests, determining if the request is `json` or not, you don't know if you're going to redirect them or show a `json` format.
 
-In your `routes/api.php`,
+Check your controller, isn't messy? Try out below code, it might help you to organize things.
 
-```php
-$factory = new BlazeCode\RouteFactory($routes);
+#### Laravel: 
+(https://github.com/daison12006013/blaze-code/wiki/Laravel-Example)[https://github.com/daison12006013/blaze-code/wiki/Laravel-Example]
 
-$factory->register(
-    new BlazeCode\Laravel\Route(),
-    __DIR__.'/api'
-);
-```
+#### Raw PHP: 
+(https://github.com/daison12006013/blaze-code/wiki/Raw-PHP)[https://github.com/daison12006013/blaze-code/wiki/Raw-PHP]
