@@ -1,8 +1,10 @@
 # Install thru Composer
 
 ```shell
-composer require daison/blaze-code
+composer require daison/blaze-code:"dev-master"
 ```
+
+Let's use the "dev-master" version which focuses on the "master" branch itself, the development is still ongoing, you may check all versions available here [https://packagist.org/packages/daison/blaze-code](https://packagist.org/packages/daison/blaze-code) to prevent code failure.
 
 # Blaze Code
 
