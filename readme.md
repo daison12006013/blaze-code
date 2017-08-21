@@ -1,3 +1,9 @@
+# Install thru Composer
+
+```shell
+composer require daison/blaze-code
+```
+
 # Blaze Code
 
 **What is blaze code?**
