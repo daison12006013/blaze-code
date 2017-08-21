@@ -54,8 +54,8 @@ class RouteFactory
                     $records[] = [
                         'prefix' => $prefix,
                         'with_suffix' => (isset($datum['with_suffix']) && $datum['with_suffix']) ? true : false,
-                        'namespace' => $datum['namespace'],
-                        'middleware' => $datum['middleware'],
+                        'namespace' => isset($datum['namespace']) ? $datum['namespace'] : null,
+                        'middleware' => isset($datum['middleware']) ? $datum['middleware'] : [],
                         'route' => $route,
                     ];
                 }

@@ -13,18 +13,18 @@ use Exception;
 class RequestHandler
 {
     /**
-     * @var \BlazeCode\Contract\RequestInterface $recipe
+     * @var \BlazeCode\Contract\RequestInterface $receipt
      */
-    private $recipe;
+    private $receipt;
 
     /**
      * Constructor.
      *
-     * @param \BlazeCode\Contract\RequestInterface $recipe
+     * @param \BlazeCode\Contract\RequestInterface $receipt
      */
-    public function __construct(Contract\RequestInterface $recipe)
+    public function __construct(Contract\RequestInterface $receipt)
     {
-        $this->recipe = $recipe;
+        $this->receipt = $receipt;
     }
 
     /**
@@ -77,9 +77,9 @@ class RequestHandler
                 $trans = $this->transformRaw($callback['transformer'], $raw);
             }
 
-            $data = $this->recipe->whenSuccess($trans, $raw);
+            $data = $this->receipt->whenSuccess($trans, $raw);
         } catch (Exception $e) {
-            $data = $this->recipe->whenError($e);
+            $data = $this->receipt->whenError($e);
         }
 
         return $this->callAfter(

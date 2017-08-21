@@ -51,39 +51,14 @@ class Request implements RequestInterface
      */
     public function whenError($e) : array
     {
-        $resp = [
-            'success' => false,
-            'code' => (method_exists($e, 'getCode') && $e->getCode() !== 0)
-                ? $e->getCode()
-                : Response::HTTP_INTERNAL_SERVER_ERROR,
-            'message' => $e->getMessage(),
-        ];
-
-        # debug = false
-        # env = production
-        # return the response instead.
-        if (config('app.debug') === false && config('app.env') === 'production') {
-            return $resp;
-        }
-
-        # if 'local', 'dev', 'develop', 'development'
-        # throw the exception itself
-        if (
-            config('app.debug') &&
-            in_array(
-                config('app.env'), [
-                    'local',
-                    'dev',
-                    'develop',
-                    'development'
-            ])
-        ) {
+        if (config('app.debug')) {
             throw $e;
         }
 
-        # or else, add the trace
-        $resp['trace'] = $e->getTrace();
-
-        return $resp;
+        return [
+            'success' => false,
+            'code' => method_exists($e, 'getCode') ? $e->getCode() : Response::HTTP_INTERNAL_SERVER_ERROR,
+            'message' => $e->getMessage(),
+        ];
     }
 }
