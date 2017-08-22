@@ -40,15 +40,20 @@ class RequestHandler
     /**
      * Transform a raw data.
      *
-     * @param string $transformer
+     * @param array $callback
      * @param array|mixed $raw
      * @return array
      */
-    private function transformRaw($transformer, $raw) : array
+    private function transformRaw($callback, $raw) : array
     {
         $fractal = new \League\Fractal\Manager;
+        $fractal->setSerializer(new Utils\NoDataKeySerializer());
 
-        $explode = explode('::', $transformer);
+        if (isset($callback['fractal']['manager'])) {
+            call_user_func_array($callback['fractal']['manager'], [$fractal]);
+        }
+
+        $explode = explode('::', $callback['fractal']['transformer']);
 
         $type_class = (count($explode) === 2) ? $explode[0] : 'Item';
         $transformer_class = (count($explode) === 2) ? $explode[1] : $explode[0];
@@ -58,7 +63,7 @@ class RequestHandler
 
         $transformed = $fractal->createData($resource)->toArray();
 
-        return reset($transformed);
+        return $transformed;
     }
 
     /**
@@ -70,11 +75,11 @@ class RequestHandler
     public function handle(array $callback)
     {
         try {
-            $raw = call_user_func($callback['before']);
+            $raw = call_user_func($callback['requests']['before']);
             $trans = $raw;
 
-            if (isset($callback['transformer']) && $callback['transformer']) {
-                $trans = $this->transformRaw($callback['transformer'], $raw);
+            if (isset($callback['fractal']['transformer']) && $callback['fractal']['transformer']) {
+                $trans = $this->transformRaw($callback, $raw);
             }
 
             $data = $this->receipt->whenSuccess($trans, $raw);
@@ -84,7 +89,7 @@ class RequestHandler
 
         return $this->callAfter(
             $data,
-            $callback['after']
+            $callback['requests']['after']
         );
     }
 }
