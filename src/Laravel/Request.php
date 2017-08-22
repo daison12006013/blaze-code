@@ -29,7 +29,7 @@ class Request implements RequestInterface
             return $data;
         }
 
-        return $raw;
+        return [];
     }
 
     /**
