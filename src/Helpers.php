@@ -2,8 +2,8 @@
 
 namespace BlazeCode\Helpers;
 
-if (! function_exists('repository')) {
-    function repository($class, $params = [])
+if (! function_exists('Repository')) {
+    function Repository($class, $params = [])
     {
         $instance = new $class;
 

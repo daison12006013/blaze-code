@@ -3,7 +3,7 @@
 namespace BlazeCode;
 
 use Closure;
-use Exception;
+use Throwable;
 
 /**
  * @license MIT
@@ -83,7 +83,7 @@ class RequestHandler
             }
 
             $data = $this->receipt->whenSuccess($trans, $raw);
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             $data = $this->receipt->whenError($e);
         }
 
