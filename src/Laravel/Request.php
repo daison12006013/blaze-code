@@ -51,14 +51,34 @@ class Request implements RequestInterface
      */
     public function whenError($e) : array
     {
-        if (config('app.debug')) {
+        if (config('blazecode.error_level') === 2) {
             throw $e;
+        }
+
+        elseif (config('blazecode.error_level') === 1) {
+            return [
+                'success' => false,
+                'code' => method_exists($e, 'getCode') ? $e->getCode() : Response::HTTP_INTERNAL_SERVER_ERROR,
+                'message' => $e->getMessage(),
+                'exceptions' => [
+                    'object' => $e,
+                    'trace' => $e->getTrace(),
+                ],
+            ];
+        }
+
+        elseif (config('blazecode.error_level') === 0) {
+            return [
+                'success' => false,
+                'code' => method_exists($e, 'getCode') ? $e->getCode() : Response::HTTP_INTERNAL_SERVER_ERROR,
+                'message' => $e->getMessage(),
+            ];
         }
 
         return [
             'success' => false,
             'code' => method_exists($e, 'getCode') ? $e->getCode() : Response::HTTP_INTERNAL_SERVER_ERROR,
-            'message' => $e->getMessage(),
+            'message' => config('blazecode.default_error_message', ''),
         ];
     }
 }
