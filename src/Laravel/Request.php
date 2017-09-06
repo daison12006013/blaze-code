@@ -51,11 +51,11 @@ class Request implements RequestInterface
      */
     public function whenError($e) : array
     {
-        if (config('blazecode.error_level') === 2) {
+        if ((int) config('blazecode.error_level') === 2) {
             throw $e;
         }
 
-        elseif (config('blazecode.error_level') === 1) {
+        elseif ((int) config('blazecode.error_level') === 1) {
             return [
                 'success' => false,
                 'code' => method_exists($e, 'getCode') ? $e->getCode() : Response::HTTP_INTERNAL_SERVER_ERROR,
@@ -67,7 +67,7 @@ class Request implements RequestInterface
             ];
         }
 
-        elseif (config('blazecode.error_level') === 0) {
+        elseif ((int) config('blazecode.error_level') === 0) {
             return [
                 'success' => false,
                 'code' => method_exists($e, 'getCode') ? $e->getCode() : Response::HTTP_INTERNAL_SERVER_ERROR,
